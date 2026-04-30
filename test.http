@@ -2,6 +2,8 @@
 #@auctionId = {{createAuction.response.body.$.id}}
 @userId = 00000000-0000-0000-0000-000000000001
 
+@userId2 = 00000000-0000-0000-0000-000000000002
+
 ### Criar leilão
 # @name createAuction
 POST {{baseUrl}}/auction
@@ -60,3 +62,15 @@ GET {{baseUrl}}/bid/{{auctionId}}
 
 ### Buscar usuário por ID
 GET {{baseUrl}}/user/{{userId}}
+
+
+##User 2
+###
+POST {{baseUrl}}/bid
+Content-Type: application/json
+
+{
+  "user_id": "{{userId2}}",
+  "auction_id": "{{auctionId}}",
+  "amount": 800.00
+}
