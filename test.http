@@ -1,0 +1,59 @@
+@baseUrl = http://localhost:8080
+@auctionId = {{createAuction.response.body.$.id}}
+@userId = 00000000-0000-0000-0000-000000000001
+
+### Criar leilão
+# @name createAuction
+POST {{baseUrl}}/auction
+Content-Type: application/json
+
+{
+  "product_name": "Notebook Dell XPS",
+  "category": "Eletrônicos",
+  "description": "Notebook Dell XPS 15 com 32GB RAM e 1TB SSD",
+  "condition": 1
+}
+
+### Listar todos os leilões ativos
+GET {{baseUrl}}/auction?status=0
+
+### Listar leilões concluídos
+GET {{baseUrl}}/auction?status=1
+
+### Filtrar por categoria
+GET {{baseUrl}}/auction?category=Eletrônicos
+
+### Filtrar por nome do produto
+GET {{baseUrl}}/auction?productName=Notebook
+
+### Buscar leilão por ID
+GET {{baseUrl}}/auction/{{auctionId}}
+
+### Buscar lance vencedor
+GET {{baseUrl}}/auction/winner/{{auctionId}}
+
+### Criar lance
+POST {{baseUrl}}/bid
+Content-Type: application/json
+
+{
+  "user_id": "{{userId}}",
+  "auction_id": "{{auctionId}}",
+  "amount": 2500.00
+}
+
+### Criar lance mais alto
+POST {{baseUrl}}/bid
+Content-Type: application/json
+
+{
+  "user_id": "{{userId}}",
+  "auction_id": "{{auctionId}}",
+  "amount": 3000.00
+}
+
+### Listar lances de um leilão
+GET {{baseUrl}}/bid/{{auctionId}}
+
+### Buscar usuário por ID
+GET {{baseUrl}}/user/{{userId}}
