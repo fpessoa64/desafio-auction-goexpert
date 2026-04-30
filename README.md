@@ -151,6 +151,26 @@ O leilão fecha automaticamente após `AUCTION_INTERVAL` (padrão: `20s`). Para 
 
 ---
 
+## Testes automatizados
+
+O teste de integração valida o fechamento automático do leilão. Ele sobe um container MongoDB via testcontainers, cria um leilão com `AUCTION_INTERVAL=2s` e verifica que o status muda para `Completed`.
+
+**Pré-requisito:** Docker em execução.
+
+```bash
+go test ./internal/infra/database/auction/... -v -run TestAuctionAutoClose -timeout 60s
+```
+
+Para rodar todos os testes do projeto:
+
+```bash
+go test ./... -timeout 60s
+```
+
+> Na primeira execução o Docker fará o pull da imagem `mongo:6`, levando alguns segundos a mais.
+
+---
+
 ## Fluxo completo (script)
 
 ```bash
