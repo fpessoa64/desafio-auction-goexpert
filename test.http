@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:8080
-@auctionId = {{createAuction.response.body.$.id}}
+#@auctionId = {{createAuction.response.body.$.id}}
 @userId = 00000000-0000-0000-0000-000000000001
 
 ### Criar leilão
@@ -13,6 +13,9 @@ Content-Type: application/json
   "description": "Notebook Dell XPS 15 com 32GB RAM e 1TB SSD",
   "condition": 1
 }
+
+#
+@auctionId = {{createAuction.response.body.$.id}}
 
 ### Listar todos os leilões ativos
 GET {{baseUrl}}/auction?status=0

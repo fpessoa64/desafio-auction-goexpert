@@ -29,7 +29,7 @@ func (u *AuctionController) CreateAuction(c *gin.Context) {
 		return
 	}
 
-	err := u.auctionUseCase.CreateAuction(context.Background(), auctionInputDTO)
+	auction, err := u.auctionUseCase.CreateAuction(context.Background(), auctionInputDTO)
 	if err != nil {
 		restErr := rest_err.ConvertError(err)
 
@@ -37,5 +37,5 @@ func (u *AuctionController) CreateAuction(c *gin.Context) {
 		return
 	}
 
-	c.Status(http.StatusCreated)
+	c.JSON(http.StatusCreated, auction)
 }
